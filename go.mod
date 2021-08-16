@@ -1,4 +1,4 @@
-module github.com/mineiros-io/terraform-module-template
+module github.com/mineiros-io/terraform-aws-alb
 
 go 1.14
 
