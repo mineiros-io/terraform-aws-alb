@@ -31,7 +31,7 @@ module "test" {
   # add only required arguments and no optional arguments
 }
 
-output "all" {
-  description = "All outputs of the module."
-  value       = module.test
-}
+#output "all" {
+#  description = "All outputs of the module."
+#  value       = module.test
+#}
