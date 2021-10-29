@@ -25,11 +25,25 @@ provider "aws" {
   region = var.aws_region
 }
 
+data "aws_vpc" "default" {
+  default = true
+}
+
+data "aws_subnet_ids" "default" {
+  vpc_id = data.aws_vpc.default.id
+}
+
+resource "aws_default_security_group" "default" {
+  vpc_id = data.aws_vpc.default.id
+}
+
 # DO NOT RENAME MODULE NAME
 module "test" {
   source = "../.."
 
   # add only required arguments and no optional arguments
+  subnets         = data.aws_subnet_ids.default.ids
+  security_groups = [aws_default_security_group.default.id]
 }
 
 # outputs generate non-idempotent terraform plans so we disable them for now unless we need them.

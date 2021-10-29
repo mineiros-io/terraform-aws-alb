@@ -23,6 +23,18 @@ provider "aws" {
   region = var.aws_region
 }
 
+data "aws_vpc" "default" {
+  default = true
+}
+
+data "aws_subnet_ids" "default" {
+  vpc_id = data.aws_vpc.default.id
+}
+
+resource "aws_default_security_group" "default" {
+  vpc_id = data.aws_vpc.default.id
+}
+
 # DO NOT RENAME MODULE NAME
 module "test" {
   source = "../.."
@@ -30,10 +42,12 @@ module "test" {
   module_enabled = true
 
   # add all required arguments
+  subnets = data.aws_subnet_ids.default.ids
 
   # add all optional arguments that create additional resources
 
   # add most/all other optional arguments
+  security_groups = [aws_default_security_group.default.id]
 
   module_tags = {
     Environment = "unknown"

@@ -30,6 +30,8 @@ module "test" {
   module_enabled = false
 
   # add all required arguments
+  subnets         = ["aaa", "bbb"]
+  security_groups = []
 
   # add all optional arguments that create additional resources
 }
