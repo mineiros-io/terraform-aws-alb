@@ -65,8 +65,8 @@ Alternatively, you can also run the tests without Docker.
 
 <!-- markdown-link-check-disable -->
 
-[makefile]: https://github.com/mineiros-io/terraform-aws-alb/blob/master/Makefile
-[testdirectory]: https://github.com/mineiros-io/terraform-aws-alb/tree/master/test
+[makefile]: https://github.com/mineiros-io/terraform-aws-alb/blob/main/Makefile
+[testdirectory]: https://github.com/mineiros-io/terraform-aws-alb/tree/main/test
 
 <!-- markdown-link-check-enable -->
 
