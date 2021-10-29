@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 output "alb" {
-  description = "All outputs of the 'aws_lb' application load balancer resource."
+  description = "All attributes of the created `aws_lb` application load balancer resource."
   value       = try(aws_lb.alb[0], {})
 }
 
