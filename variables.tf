@@ -3,6 +3,22 @@
 # These variables must be set when using this module.
 # ----------------------------------------------------------------------------------------------------------------------
 
+variable "subnets" {
+  type        = set(string)
+  description = "(Required) A list of subnet IDs to attach to the ALB. At least two subnets in two different availability zones must be specified."
+
+  validation {
+    condition     = length(var.subnets) >= 2
+    error_message = "At least two subnets in two different availability zones must be specified in 'var.subnets'."
+  }
+}
+
+variable "security_groups" {
+  type        = set(string)
+  description = "(Optional) A list of security group IDs to assign to the load balancer."
+}
+
+
 # ---------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 # These variables have defaults, but may be overridden.
@@ -35,18 +51,6 @@ variable "idle_timeout" {
   type        = number
   description = "(Optional) The time in seconds that the connection is allowed to be idle."
   default     = 60
-}
-
-variable "security_groups" {
-  type        = set(string)
-  description = "(Optional) A list of security group IDs to assign to the load balancer."
-  default     = []
-}
-
-variable "subnets" {
-  type        = set(string)
-  description = "(Optional) A list of subnet IDs to attach to the LB."
-  default     = []
 }
 
 variable "drop_invalid_header_fields" {
@@ -101,23 +105,21 @@ variable "tags" {
 # ----------------------------------------------------------------------------------------------------------------------
 # MODULE CONFIGURATION PARAMETERS
 # These variables are used to configure the module.
-# See https://medium.com/mineiros/the-ultimate-guide-on-how-to-write-terraform-modules-part-1-81f86d31f024
 # ----------------------------------------------------------------------------------------------------------------------
-
 variable "module_enabled" {
   type        = bool
-  description = "(Optional) Whether to create resources within the module or not. Default is true."
+  description = "(Optional) Whether to create resources within the module or not."
   default     = true
+}
+
+variable "module_tags" {
+  type        = map(string)
+  description = "(Optional) A map of tags that will be applied to all created resources that accept tags. Tags defined with 'module_tags' can be overwritten by resource-specific tags."
+  default     = {}
 }
 
 variable "module_depends_on" {
   type        = any
-  description = "(Optional) A list of external resources the module depends_on. Default is []."
+  description = "(Optional) A list of external resources the module depends_on."
   default     = []
-}
-
-variable "module_tags" {
-  description = "(Optional) A map of default tags to apply to all resources created which support tags. Default is {}."
-  type        = map(string)
-  default     = {}
 }
