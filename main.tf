@@ -20,7 +20,7 @@ resource "aws_lb" "alb" {
     content {
       bucket  = access_logs.value.bucket
       prefix  = try(access_logs.value.prefix, null)
-      enabled = try(access_logs.value.enabled, false)
+      enabled = try(access_logs.value.enabled, true)
     }
   }
 
