@@ -54,7 +54,7 @@ variable "idle_timeout" {
 }
 
 variable "drop_invalid_header_fields" {
-  type        = string
+  type        = bool
   description = "(Optional) Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer (true) or routed to targets (false). Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens."
   default     = false
 }
