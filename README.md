@@ -8,7 +8,7 @@
 
 # terraform-aws-alb
 
-A [Terraform] module for [Load Balancing](https://aws.amazon.com/elasticloadbalancing/)
+A [Terraform] module to deploy and manage an [Application Load Balancer](https://aws.amazon.com/elasticloadbalancing/)
 on [Amazon Web Services (AWS)][aws].
 
 **_This module supports Terraform version 1
